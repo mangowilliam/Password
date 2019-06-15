@@ -10,6 +10,12 @@ class User:
         self.phone = phone
         self.email = email
 
+    def save_user(self):
+        '''
+        save_user method saves user objects into use
+        '''
+
+        User.user.append(self)
 
 # class Credentials:
 #    """Class that generates new instances of credentials."""
