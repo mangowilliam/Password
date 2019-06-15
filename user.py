@@ -12,10 +12,12 @@ class User:
 
     def save_user(self):
         '''
-        save_user method saves user objects into use
+        save_user method saves user objects into user
         '''
 
         User.user.append(self)
 
-# class Credentials:
-#    """Class that generates new instances of credentials."""
+    def delete_user(self):
+
+        User.user.remove(self)
+
