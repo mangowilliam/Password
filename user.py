@@ -21,7 +21,7 @@ class User:
 
         User.user.remove(self)
     @classmethod
-    def user_exist(cls,sir_name):
+    def user_exist(cls,email):
         '''
         Method that checks if a user exists from the user.
         Args:
@@ -30,7 +30,7 @@ class User:
             Boolean: True or false depending if the user exists
         '''
         for user in cls.user:
-            if user.sir_name == sir_name:
+            if user.email == email:
                     return True
 
         return False
