@@ -77,95 +77,145 @@ def create_generated_password(name):
 
 
 def main():
-    print("Hello Welcome. What is your name?")
-    sir_name = input()
+    '''
+    Function running the app
+    '''
+    print("Hello???? Welcome!!!!!. use the short codes to explore")
 
-    print(f"Hello {sir_name}. what would you like to do?")
-    print('\n')
 
     while True:
-        print("Use these short codes : cu - create a new user, du - display user, dus - delete a user, ex -exit the user, fu - find user")
+        print(" cl - create a login and save login, lg - login into your account")
 
         short_code = input().lower()
 
-        if short_code == 'cu':
-            print("new user")
+        if short_code == 'cl':
+            '''
+            Creating an account
+            '''
+
+            print("\n")
+            print("New Account")
             print("-" * 10)
 
-            print("sir name....")
-            sir_name = input()
-
-            print("other name...")
-            other_name = input()
-
-            print("Phone number ...")
-            phone = input()
-
-            print("Email address ...")
-            email = input()
-
-            print("username ...")
+            print("User name ...")
             login_name = input()
 
-            print("password ...")
+            print("Password ...")
+            login_password= input()
+
+            # Create and save new user
+            save_login(create_login(login_name, login_password))
+
+            print("\n")
+            print(f"{login_name} welcome to Password Locker")
+            print("\n")
+        
+        elif short_code == 'lg':
+            '''
+            Logs users to their account
+            '''
+            print("\n")
+            print("Log into your Account")
+            print("Enter the login name")
+            login_name = input()
+
+            print("Enter the password")
             login_password = input()
 
-            # create and save new user.
-            save_user(create_user(
-                sir_name, other_name, phone, email,login_name,login_password))
-            print('\n')
-            print(f"New Contact {sir_name} {other_name} created")
-            print('\n')
+            if log_in(login_name, login_password) == None:
+                print("\n")
+                print("Please try again or create an account")
+                print("\n")
 
-        elif short_code == 'du':
-
-            if display_users():
-                print("Here is a list of all your contact users")
-                print('\n')
-
-                for user in display_users():
-                    print(
-                        f"{user.sir_name} {user.other_name} .....{user.phone} {user.email} {user.login_name} {user.login_password}")
-
-                print('\n')
             else:
-                print('\n')
-                print("You dont seem to have any users saved yet")
-                print('\n')
 
-        elif short_code == 'fu':
+                log_in(login_name, login_password)
+                print("\n")
+                print(f'''{login_name} welcome to your Credentials\n
+                Use these short codes to get around''')
 
-            print("Enter the email of the user")
+                while True:
+                    print("Use these short codes : cu - create a new user, du - display user, dus - delete a user, ex -exit the user, fu - find user")
 
-            search_user = input()
-            if check_existing_user(search_user):
-                search_user = find_user(search_user)
-                print(f"{search_user.sir_name} {search_user.other_name}")
-                print('-' * 20)
+                    short_code = input().lower()
+                    if short_code == 'cu':
+                        print("new user")
+                        print("-" * 10)
 
-                print(f"Phone....{search_user.phone}")
-                print(f"email ...{search_user.email}")
-                print(f"username...{search_user.login_name}")
-                print(f"password...{search_user.login_password}")
-            else:
-                print("user not saved")
+                        print("sir name....")
+                        sir_name = input()
 
-        elif short_code == 'dus':
-            print("Enter the email for the user you want to delete")
-            search_user = input()
-            if check_existing_user(email):
-                search_user = find_user(email)
-                delete_user(search_user)
-                print("user deleted")
-            else:
-                print('no such user')
-                print('\t')
+                        print("other name...")
+                        other_name = input()
 
-        elif short_code == "ex":
-            print("Bye .......")
-            break
-        else:
-            print("you can start again")
+                        print("Phone number ...")
+                        phone = input()
+
+                        print("Email address ...")
+                        email = input()
+
+                        print("username ...")
+                        login_name = input()
+
+                        print("password ...")
+                        login_password = input()
+
+                        # create and save new user.
+                        save_user(create_user(
+                            sir_name, other_name, phone, email,login_name,login_password))
+                        print('\n')
+                        print(f"New Contact {sir_name} {other_name} created")
+                        print('\n')
+
+                    elif short_code == 'du':
+
+                        if display_users():
+                            print("Here is a list of all your contact users")
+                            print('\n')
+
+                            for user in display_users():
+                                print(
+                                    f"{user.sir_name} {user.other_name} .....{user.phone} {user.email} {user.login_name} {user.login_password}")
+
+                            print('\n')
+                        else:
+                            print('\n')
+                            print("You dont seem to have any users saved yet")
+                            print('\n')
+
+                    elif short_code == 'fu':
+
+                        print("Enter the email of the user")
+
+                        search_user = input()
+                        if check_existing_user(search_user):
+                            search_user = find_user(search_user)
+                            print(f"{search_user.sir_name} {search_user.other_name}")
+                            print('-' * 20)
+
+                            print(f"Phone....{search_user.phone}")
+                            print(f"email ...{search_user.email}")
+                            print(f"username...{search_user.login_name}")
+                            print(f"password...{search_user.login_password}")
+                        else:
+                            print("user not saved")
+
+                    elif short_code == 'dus':
+                        print("Enter the email for the user you want to delete")
+                        search_user = input()
+                        if check_existing_user(email):
+                            search_user = find_user(email)
+                            delete_user(search_user)
+                            print("user deleted")
+                        else:
+                            print('no such user')
+                            print('\t')
+
+                    elif short_code == "ex":
+                        print("Bye .......")
+                        break
+                    else:
+                        print("you can start again")
 
 
 if __name__ == '__main__':
