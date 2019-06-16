@@ -20,8 +20,9 @@ class User:
     def delete_user(self):
 
         User.user.remove(self)
+
     @classmethod
-    def user_exist(cls,email):
+    def user_exist(cls, email):
         '''
         Method that checks if a user exists from the user.
         Args:
@@ -31,9 +32,10 @@ class User:
         '''
         for user in cls.user:
             if user.email == email:
-                    return True
+                return True
 
         return False
+
     @classmethod
     def display_users(cls):
         '''

@@ -69,10 +69,10 @@ class TestUser(unittest.TestCase):
         '''
 
         self.new_user.save_user()
-        test_user = User("Test","user","0711223344","test@user.com")
+        test_user = User("Test", "user", "0711223344", "test@user.com")
         test_user.save_user()
 
-        user_exist = User.user_exist ("test@user.com")
+        user_exist = User.user_exist("test@user.com")
 
         self.assertTrue(user_exist)
 
@@ -81,7 +81,8 @@ class TestUser(unittest.TestCase):
         method that returns a list of all users saved
         '''
 
-        self.assertEqual(User.display_users(),User.user)
+        self.assertEqual(User.display_users(), User.user)
+
 
 if __name__ == '__main__':
     unittest.main()
