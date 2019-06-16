@@ -38,6 +38,13 @@ def display_users():
     return User.display_users()
 
 
+def find_user(email):
+    '''
+    Function that finds a user by email and returns the user
+    '''
+    return User.find_by_email(email)
+
+
 def main():
     print("Hello Welcome. What is your name?")
     sir_name = input()
@@ -46,7 +53,7 @@ def main():
     print('\n')
 
     while True:
-        print("Use these short codes : cu - create a new user, du - display user, ex -exit the user ")
+        print("Use these short codes : cu - create a new user, du - display user, dus - delete a user, ex -exit the user, fu - find user")
 
         short_code = input().lower()
 
@@ -86,14 +93,42 @@ def main():
                 print('\n')
             else:
                 print('\n')
-                print("You dont seem to have any contacts saved yet")
+                print("You dont seem to have any users saved yet")
                 print('\n')
+
+        elif short_code == 'fu':
+
+            print("Enter the email of the user")
+
+            search_user = input()
+            if check_existing_user(search_user):
+                search_user = find_user(search_user)
+                print(f"{search_user.sir_name} {search_user.other_name}")
+                print('-' * 20)
+
+                print(f"Phone....{search_user.phone}")
+                print(f"email ...{search_user.email}")
+            else:
+                print("user not saved")
+
+        elif short_code == 'dus':
+            print("Enter the email for the user you want to delete")
+            search_user = input()
+            if check_existing_user(email):
+                search_user = find_user(email)
+                delete_user(search_user)
+                print("user deleted")
+            else:
+                print('no such user')
+                print('\t')
 
         elif short_code == "ex":
             print("Bye .......")
             break
         else:
             print("you can start again")
+
+
 if __name__ == '__main__':
 
     main()

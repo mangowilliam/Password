@@ -83,6 +83,20 @@ class TestUser(unittest.TestCase):
 
         self.assertEqual(User.display_users(), User.user)
 
+    def test_find_user_by_email(self):
+        '''
+        test to check if we can find a user by email and display information
+        '''
+
+        self.new_user.save_user()
+        test_user = User("Test", "user", "0711223344",
+                         "test@user.com")  # new contact
+        test_user.save_user()
+
+        found_user = User.find_by_email("test@user.com")
+
+        self.assertEqual(found_user.phone, test_user.phone)
+
 
 if __name__ == '__main__':
     unittest.main()

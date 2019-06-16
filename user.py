@@ -42,3 +42,15 @@ class User:
         method that returns the contact list
         '''
         return cls.user
+
+    @classmethod
+    def find_by_email(cls, email):
+        '''
+        Method that takes in an email and returns a user that matches that email.
+        Returns :
+            user that matches the number.
+        '''
+
+        for user in cls.user:
+            if user.email == email:
+                return user
