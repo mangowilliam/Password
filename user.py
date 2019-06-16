@@ -1,4 +1,5 @@
 import random
+import string
 class User:
     """  Class that generates new instances of users."""
     user = []
@@ -70,3 +71,30 @@ class Login:
         Method that saves a user's credentials to credential list
         '''
         Login.login_details.append(self)
+    @classmethod
+    def generate_password(size = 9, chars=string.ascii_letters + string.digits + string.punctuation):
+        '''
+        Method that generates a random password
+        '''
+        # Length of the generated password
+        # Generate random alphanumeric 
+        # Create password
+        return ''.join( random.choice(chars) for _ in range(9) )
+        
+    @classmethod
+    def log_in(cls, login_name, login_password):
+        '''
+        Method that allows a user to log into their credential
+        Args:
+            name : name of the user
+            password : password for the user
+        Returns:
+            Credential list for the user that matches the name and password
+            False: if the name or password is incorrect
+        '''
+        for user in cls.login_details:
+            if user.login_name == login_name and user.login_password == login_password:
+                return Login.login_details
+
+        return False
+        

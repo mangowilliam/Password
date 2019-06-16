@@ -1,3 +1,6 @@
+
+import random
+import string
 import unittest
 
 from user import Login, User
@@ -98,40 +101,62 @@ class TestUser(unittest.TestCase):
 
         self.assertEqual(found_user.phone, test_user.phone)
 
-    class TestLogin(unittest.TestCase):
+class TestLogin(unittest.TestCase):
+    '''
+    Test class that defines test cases for the login class behaviours.
+
+    Args:
+    unittest.TestCase: TestCase class that helps in creating test login
+    '''
+
+    def setUp(self):
+        """
+        set up method to run before each test case
+        """
+        self.new_login = Login("changaa", "mbogi")
+
+    def tearDown(self):
         '''
-        Test class that defines test cases for the login class behaviours.
+        tearDown method that does clean up after each test case has run.
+        '''
+        Login.login_details = []
 
-        Args:
-        unittest.TestCase: TestCase class that helps in creating test login
+    def test_init(self):
+        """
+        test_init test case to test if each object is initialized correctly
+        """
+        self.assertEqual(self.new_login.login_name, "changaa")
+        self.assertEqual(self.new_login.login_password, "mbogi")
+
+    def test_save_login(self):
+        '''
+        test_save_contact test case to test if the  object is saved
+        '''
+        self.new_login.save_login()
+        self.assertEqual(len(Login.login_details), 1)
+    def test_generate_password(self):
+        '''
+        Test case to test if a user can log into their credentials
+        '''
+        
+        generated_password = self.new_login.generate_password()
+
+        self.assertEqual( len(generated_password), 9 )   
+
+    def test_log_in(self):
+        '''
+        Test case to test if a user can log into their credentials
         '''
 
-        def setUp(self):
-            """
-            set up method to run before each test case
-            """
-            self.new_login = Login("changaa", "mbogi")
+        self.new_login.save_login()
 
-        def tearDown(self):
-            '''
-            tearDown method that does clean up after each test case has run.
-            '''
-            Login.login_details = []
+        test_log_in = Login("changaa","mbogii")
 
-        def test_init(self):
-            """
-            test_init test case to test if each object is initialized correctly
-            """
-            self.assertEqual(self.new_login.login_name, "changaa")
-            self.assertEqual(self.new_login.login_password, "mbogi")
+        test_log_in.save_login()
 
-        def test_save_login(self):
-            '''
-            test_save_contact test case to test if the  object is saved
-            '''
-            self.
-            self.assertEqual(len(Login.login_details), 1)
+        found_logins = Login.log_in("changaa", "mbogi")
 
-
+        self.assertEqual( found_logins,  Login.login_details )   
+    
 if __name__ == '__main__':
     unittest.main()

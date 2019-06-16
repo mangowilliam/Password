@@ -1,5 +1,6 @@
 #!/usr/bin/env python3.6
 from user import User
+from user import Login
 
 
 def create_user(sname, oname, phone, email):
@@ -43,6 +44,43 @@ def find_user(email):
     Function that finds a user by email and returns the user
     '''
     return User.find_by_email(email)
+
+def create_login(login_name, login_password):
+    '''
+    Function to create a login account
+    '''
+
+    new_login = Login(login_name,login_password)
+
+    return new_login
+
+def save_login(login):
+    '''
+    Function to save a login account
+    '''
+    login.save_login()
+def log_in(login_name, login_password):
+    '''
+    Function that allows a user to log into their credential account
+
+    Args:
+        name : the name the user used to create their user account
+        password : the password the user used to create their user account
+    '''
+    log_in = Login.log_in(login_name, login_password)
+    if log_in != False:
+        return Login.log_in(login_name, login_password)
+def create_generated_password(name):
+    '''
+    Function that generates a password for the user 
+
+    Args:
+        name : the name of the account
+    '''
+    password = Login.generate_password()
+
+    return password
+
 
 
 def main():
