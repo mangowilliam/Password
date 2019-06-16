@@ -3,11 +3,11 @@ from user import User
 from user import Login
 
 
-def create_user(sname, oname, phone, email):
+def create_user(sname, oname, phone, email,login_name,login_password):
     '''
     Function to create a new user
     '''
-    new_user = User(sname, oname, phone, email)
+    new_user = User(sname, oname, phone, email,login_name,login_password)
     return new_user
 
 
@@ -27,7 +27,7 @@ def delete_user(user):
 
 def check_existing_user(email):
     '''
-    Function that check if a contact exists with that email and return a Boolean
+    Function that check if a user exists with thair email and return a Boolean
     '''
     return User.user_exist(email)
 
@@ -61,11 +61,7 @@ def save_login(login):
     login.save_login()
 def log_in(login_name, login_password):
     '''
-    Function that allows a user to log into their credential account
-
-    Args:
-        name : the name the user used to create their user account
-        password : the password the user used to create their user account
+    Function that allows a user to log into their system
     '''
     log_in = Login.log_in(login_name, login_password)
     if log_in != False:
@@ -73,9 +69,6 @@ def log_in(login_name, login_password):
 def create_generated_password(name):
     '''
     Function that generates a password for the user 
-
-    Args:
-        name : the name of the account
     '''
     password = Login.generate_password()
 
@@ -111,9 +104,15 @@ def main():
             print("Email address ...")
             email = input()
 
+            print("username ...")
+            login_name = input()
+
+            print("password ...")
+            login_password = input()
+
             # create and save new user.
             save_user(create_user(
-                sir_name, other_name, phone, email))
+                sir_name, other_name, phone, email,login_name,login_password))
             print('\n')
             print(f"New Contact {sir_name} {other_name} created")
             print('\n')
@@ -126,7 +125,7 @@ def main():
 
                 for user in display_users():
                     print(
-                        f"{user.sir_name} {user.other_name} .....{user.phone} {user.email}")
+                        f"{user.sir_name} {user.other_name} .....{user.phone} {user.email} {user.login_name} {user.login_password}")
 
                 print('\n')
             else:
@@ -146,6 +145,8 @@ def main():
 
                 print(f"Phone....{search_user.phone}")
                 print(f"email ...{search_user.email}")
+                print(f"username...{search_user.login_name}")
+                print(f"password...{search_user.login_password}")
             else:
                 print("user not saved")
 

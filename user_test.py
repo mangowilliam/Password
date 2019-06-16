@@ -19,7 +19,7 @@ class TestUser(unittest.TestCase):
         set up method to run before each test case
         """
         self.new_user = User("Mango", "William", "0770771045",
-                             "juniormango@yahoo.com")  # new user objects
+                             "juniormango@yahoo.com","changaa","mbogi")  # new user objects
 
     def tearDown(self):
         '''
@@ -35,6 +35,8 @@ class TestUser(unittest.TestCase):
         self.assertEqual(self.new_user.other_name, "William")
         self.assertEqual(self.new_user.phone, "0770771045")
         self.assertEqual(self.new_user.email, "juniormango@yahoo.com")
+        self.assertEqual(self.new_user.login_name, "changaa")
+        self.assertEqual(self.new_user.login_password, "mbogi")
 
     def test_save_user(self):
         '''
@@ -51,17 +53,17 @@ class TestUser(unittest.TestCase):
         '''
         self.new_user.save_user()
         test_user = User("Test", "user", "0712345678",
-                         "test@user.com")  # new contact
+                         "test@user.com","sk","row")  # new contact
         test_user.save_user()
         self.assertEqual(len(User.user), 2)
 
     def test_delete_user(self):
         '''
-        test_delete_contact to test if we can remove a contact from our contact list
+        test_delete_user to test if we can remove a user from our users
         '''
         self.new_user.save_user()
         test_user = User("Test", "user", "0712345678",
-                         "test@user.com")
+                         "test@user.com","sk","row")
         test_user.save_user()
 
         self.new_user.delete_user()
@@ -73,7 +75,7 @@ class TestUser(unittest.TestCase):
         '''
 
         self.new_user.save_user()
-        test_user = User("Test", "user", "0711223344", "test@user.com")
+        test_user = User("Test", "user", "0711223344", "test@user.com","sk","row")
         test_user.save_user()
 
         user_exist = User.user_exist("test@user.com")
@@ -89,12 +91,12 @@ class TestUser(unittest.TestCase):
 
     def test_find_user_by_email(self):
         '''
-        test to check if we can find a user by email and display information
+        test to check if we can find a user by email and display their information
         '''
 
         self.new_user.save_user()
         test_user = User("Test", "user", "0711223344",
-                         "test@user.com")  # new contact
+                         "test@user.com","sk","row") 
         test_user.save_user()
 
         found_user = User.find_by_email("test@user.com")
@@ -136,7 +138,7 @@ class TestLogin(unittest.TestCase):
         self.assertEqual(len(Login.login_details), 1)
     def test_generate_password(self):
         '''
-        Test case to test if a user can log into their credentials
+        Test case to test if a password is generated
         '''
         
         generated_password = self.new_login.generate_password()
@@ -145,7 +147,7 @@ class TestLogin(unittest.TestCase):
 
     def test_log_in(self):
         '''
-        Test case to test if a user can log into their credentials
+        Test case to test if a user can log into the system
         '''
 
         self.new_login.save_login()
