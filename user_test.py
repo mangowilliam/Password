@@ -124,15 +124,13 @@ class TestUser(unittest.TestCase):
             """
             self.assertEqual(self.new_login.login_name, "changaa")
             self.assertEqual(self.new_login.login_password, "mbogi")
-            
 
         def test_save_login(self):
             '''
-            test_save_contact test case to test if the  object is saved 
+            test_save_contact test case to test if the  object is saved
             '''
-            self.new_login.save_login() 
+            self.
             self.assertEqual(len(Login.login_details), 1)
-        
 
 
 if __name__ == '__main__':

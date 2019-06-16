@@ -65,3 +65,8 @@ class Login:
         self.login_name = login_name
         self.login_password = login_password
     
+    def save_login(self):
+        '''
+        Method that saves a user's credentials to credential list
+        '''
+        Login.login_details.append(self)
