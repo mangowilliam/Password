@@ -1,4 +1,4 @@
-
+import random
 class User:
     """  Class that generates new instances of users."""
     user = []
@@ -54,3 +54,14 @@ class User:
         for user in cls.user:
             if user.email == email:
                 return user
+
+
+class Login:
+    """  Class that generates new instances of logins."""
+    login_details = []
+
+    def __init__(self, login_name, login_password):
+
+        self.login_name = login_name
+        self.login_password = login_password
+    

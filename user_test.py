@@ -1,5 +1,6 @@
 import unittest
-from user import User
+
+from user import Login, User
 
 
 class TestUser(unittest.TestCase):
@@ -96,6 +97,42 @@ class TestUser(unittest.TestCase):
         found_user = User.find_by_email("test@user.com")
 
         self.assertEqual(found_user.phone, test_user.phone)
+
+    class TestLogin(unittest.TestCase):
+        '''
+        Test class that defines test cases for the login class behaviours.
+
+        Args:
+        unittest.TestCase: TestCase class that helps in creating test login
+        '''
+
+        def setUp(self):
+            """
+            set up method to run before each test case
+            """
+            self.new_login = Login("changaa", "mbogi")
+
+        def tearDown(self):
+            '''
+            tearDown method that does clean up after each test case has run.
+            '''
+            Login.login_details = []
+
+        def test_init(self):
+            """
+            test_init test case to test if each object is initialized correctly
+            """
+            self.assertEqual(self.new_login.login_name, "changaa")
+            self.assertEqual(self.new_login.login_password, "mbogi")
+            
+
+        def test_save_login(self):
+            '''
+            test_save_contact test case to test if the  object is saved 
+            '''
+            self.new_login.save_login() 
+            self.assertEqual(len(Login.login_details), 1)
+        
 
 
 if __name__ == '__main__':
