@@ -20,4 +20,23 @@ class User:
     def delete_user(self):
 
         User.user.remove(self)
+    @classmethod
+    def user_exist(cls,sir_name):
+        '''
+        Method that checks if a user exists from the user.
+        Args:
+            sir_nae: sir_name to search if it exists
+        Returns :
+            Boolean: True or false depending if the user exists
+        '''
+        for user in cls.user:
+            if user.sir_name == sir_name:
+                    return True
 
+        return False
+    @classmethod
+    def display_users(cls):
+        '''
+        method that returns the contact list
+        '''
+        return cls.user
