@@ -19,7 +19,7 @@ class TestUser(unittest.TestCase):
         set up method to run before each test case
         """
         self.new_user = User("Mango", "William", "0770771045",
-                             "juniormango@yahoo.com","changaa","mbogi")  # new user objects
+                             "juniormango@yahoo.com", "changaa", "mbogi")  # new user objects
 
     def tearDown(self):
         '''
@@ -53,7 +53,7 @@ class TestUser(unittest.TestCase):
         '''
         self.new_user.save_user()
         test_user = User("Test", "user", "0712345678",
-                         "test@user.com","sk","row")  # new contact
+                         "test@user.com", "sk", "row")  # new contact
         test_user.save_user()
         self.assertEqual(len(User.user), 2)
 
@@ -63,7 +63,7 @@ class TestUser(unittest.TestCase):
         '''
         self.new_user.save_user()
         test_user = User("Test", "user", "0712345678",
-                         "test@user.com","sk","row")
+                         "test@user.com", "sk", "row")
         test_user.save_user()
 
         self.new_user.delete_user()
@@ -75,7 +75,8 @@ class TestUser(unittest.TestCase):
         '''
 
         self.new_user.save_user()
-        test_user = User("Test", "user", "0711223344", "test@user.com","sk","row")
+        test_user = User("Test", "user", "0711223344",
+                         "test@user.com", "sk", "row")
         test_user.save_user()
 
         user_exist = User.user_exist("test@user.com")
@@ -96,12 +97,13 @@ class TestUser(unittest.TestCase):
 
         self.new_user.save_user()
         test_user = User("Test", "user", "0711223344",
-                         "test@user.com","sk","row") 
+                         "test@user.com", "sk", "row")
         test_user.save_user()
 
         found_user = User.find_by_email("test@user.com")
 
         self.assertEqual(found_user.phone, test_user.phone)
+
 
 class TestLogin(unittest.TestCase):
     '''
@@ -136,14 +138,15 @@ class TestLogin(unittest.TestCase):
         '''
         self.new_login.save_login()
         self.assertEqual(len(Login.login_details), 1)
+
     def test_generate_password(self):
         '''
         Test case to test if a password is generated
         '''
-        
+
         generated_password = self.new_login.generate_password()
 
-        self.assertEqual( len(generated_password), 9 )   
+        self.assertEqual(len(generated_password), 9)
 
     def test_log_in(self):
         '''
@@ -152,13 +155,14 @@ class TestLogin(unittest.TestCase):
 
         self.new_login.save_login()
 
-        test_log_in = Login("changaa","mbogii")
+        test_log_in = Login("changaa", "mbogii")
 
         test_log_in.save_login()
 
         found_logins = Login.log_in("changaa", "mbogi")
 
-        self.assertEqual( found_logins,  Login.login_details )   
-    
+        self.assertEqual(found_logins,  Login.login_details)
+
+
 if __name__ == '__main__':
     unittest.main()
