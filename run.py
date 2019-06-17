@@ -109,9 +109,14 @@ def main():
             save_login(create_login(login_name, login_password))
 
             print("\n")
-            print(f"{login_name} you have an account type lg to login to it")
+            print(f"{login_name} you have an account, type lg to login to it")
             print("\n")
 
+        elif short_code == 'gp':                                                
+            password=Login.generate_password()                                              
+            print('\t')
+            print(f"your password is {password}")
+            print(f"you have generated a password, you can use or save it for futher use") 
         elif short_code == 'lg':
             '''
             Logs users to their account
@@ -172,7 +177,7 @@ def main():
                     elif short_code == 'du':
 
                         if display_users():
-                            print("Here is a list of all your contact users")
+                            print("Here is a list of all your  users")
                             print('\n')
 
                             for user in display_users():
@@ -185,6 +190,11 @@ def main():
                             print("You dont seem to have any users saved yet")
                             print('\n')
 
+                    elif short_code == 'gp':                                                
+                            password=Login.generate_password()                                              
+                            print('\t')
+                            print(f"your password is {password}")
+                            print(f"you have generated a password, you can use or save it for futher use") 
                     elif short_code == 'fu':
 
                         print("Enter the email of the user")

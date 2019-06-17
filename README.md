@@ -6,12 +6,12 @@
 ## Description
 This is a Python application that allows a user to create, generate and store passwords and other details for various accounts. The application runs on the terminal and the user navigates through the app by using short codes. <br/>
 The short codes are:
-* cu - create user file
-* du - display all files
+* cu - create user information
+* du - display alluser information
 * lg - log into your account
 * ld - save login details
 * ex - exit the app
-* cl-  create logib
+* cl-  create login
 
 ## User Stories
 As a user I would like:
